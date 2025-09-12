@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo URL Chào Khách</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            opacity: 0.9;
+        }
+        
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e8f4fd;
+            border: 1px solid #b3d9f2;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .result h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .url-output {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        
+        .copy-btn {
+            background: #28a745;
+            margin-top: 10px;
+            width: auto;
+            padding: 8px 20px;
+            font-size: 14px;
+        }
+        
+        .copy-btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tạo URL Chào Khách</h1>
+        
+        <form id="urlForm">
+            <div class="form-group">
+                <label for="websiteUrl">Đường link trang web:</label>
+                <input type="text" id="websiteUrl" placeholder="Ví dụ: https://yourwebsite.com/greeting.html" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="guestName">Tên khách:</label>
+                <input type="text" id="guestName" placeholder="Ví dụ: dctrng" required>
+            </div>
+            
+            <button type="submit">Tạo URL</button>
+        </form>
+        
+        <div id="result" class="result">
+            <h3>URL được tạo:</h3>
+            <div id="generatedUrl" class="url-output"></div>
+            <button class="copy-btn" onclick="copyToClipboard()">Sao chép</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('urlForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const websiteUrl = document.getElementById('websiteUrl').value.trim();
+            const guestName = document.getElementById('guestName').value.trim();
+            
+            if (!websiteUrl || !guestName) {
+                alert('Vui lòng điền đầy đủ thông tin!');
+                return;
+            }
+            
+            // Encode tên khách để xử lý ký tự đặc biệt
+            const encodedName = encodeURIComponent(guestName);
+            
+            // Tạo URL với hash
+            const generatedUrl = websiteUrl + '#' + encodedName;
+            
+            // Hiển thị kết quả
+            document.getElementById('generatedUrl').textContent = generatedUrl;
+            document.getElementById('result').style.display = 'block';
+        });
+        
+        function copyToClipboard() {
+            const urlText = document.getElementById('generatedUrl').textContent;
+            
+            // Tạo element tạm để copy
+            const tempInput = document.createElement('input');
+            tempInput.value = urlText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            
+            // Thông báo đã copy
+            alert('Đã sao chép URL vào clipboard!');
+        }
+    </script>
+</body>
+</html>
