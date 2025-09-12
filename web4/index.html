@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nvg8 Scroll Animation | Codegrid</title>
+  <script type="module" crossorigin src="./assets/index-2rZuCt8i.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BzBZ94Sf.css">
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-header">
+       <h1 id="greeting">Thân mời <span id="guestName">khách</span></h1>
+
+    
+    </div>
+    <div class="animated-icons">
+      <div class="animated-icon icon-1">❤️</div>
+      <div class="animated-icon icon-2">💌</div>
+      <div class="animated-icon icon-3">💍</div>
+      <div class="animated-icon icon-4">💓</div>
+      <div class="animated-icon icon-5">🌹</div>
+    </div>
+
+
+    <h1 class="animated-text">
+      <div class="placeholder-icon"></div>
+      <span class="text-segment">Ngày hạnh phúc</span>
+      <div class="placeholder-icon"></div>
+      <span class="text-segment">đã đến rồi.</span>
+      <span class="text-segment">Cùng nhau bước</span>
+      <div class="placeholder-icon"></div>
+      <span class="text-segment">vào hành trình mới</span>
+      <div class="placeholder-icon"></div>
+      <span class="text-segment">với tình yêu</span>
+      <div class="placeholder-icon"></div>
+      <span class="text-segment">và lời hứa trọn đời.</span>
+    </h1>
+
+  </section>
+
+
+  <section class="outro">
+    <h1>Link in description</h1>
+  </section>
+  <script>
+        // Lấy tên khách từ hash (#) trong URL
+        const hash = window.location.hash.substring(1); // Bỏ dấu #
+        
+        // Cập nhật tên khách nếu có
+        if (hash) {
+            document.getElementById('guestName').textContent = decodeURIComponent(hash);
+        }
+    </script>
+</body>
+
+</html>
