@@ -74,7 +74,12 @@
     </section>
   </div>
     <script>// Khi cuộn hết trang (hoặc hoàn thành event gì đó):
-window.parent.postMessage("overlay-done", "*");
+window.addEventListener("scroll", () => {
+  if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+    window.parent.postMessage("overlay-done", "*");
+  }
+});
+
 </script>
 
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
