@@ -73,14 +73,9 @@
       </div>
     </section>
   </div>
-  <script>
-    window.addEventListener("scroll", () => {
-      if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
-        // Báo ra ngoài khi scroll hết
-        window.parent.postMessage({ action: "iframeScrolledToEnd" }, "*");
-      }
-    });
-  </script>
+    <script>// Khi cuộn hết trang (hoặc hoàn thành event gì đó):
+window.parent.postMessage("overlay-done", "*");
+</script>
 
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
